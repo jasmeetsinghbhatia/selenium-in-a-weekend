@@ -1,0 +1,11 @@
+# All intelliJ created files/folders
+.idea/*
+
+# All Maven Dependencies
+.idea/libraries/*
+
+# Drivers
+drivers/*
+
+# Target files generated on Build
+target/*
