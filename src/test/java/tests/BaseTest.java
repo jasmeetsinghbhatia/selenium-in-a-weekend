@@ -1,7 +1,5 @@
 package tests;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.BasePage;
@@ -15,8 +13,6 @@ public class BaseTest {
         this.page = pageName;
     }
 
-
-    @BeforeEach
     void setUp() {
         //        We will be using chrome driver for the purpose of development of this framework.
 
@@ -35,9 +31,7 @@ public class BaseTest {
         BasePage.clickOpenPage(this.driver, this.page);
     }
 
-    @AfterEach
     void tearDown() {
         this.driver.close();
-
     }
 }

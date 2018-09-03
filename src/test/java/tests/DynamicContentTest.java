@@ -1,34 +1,32 @@
 package tests;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 import pages.DynamicContentPage;
 
-
-class DynamicContentTest extends BaseTest {
+public class DynamicContentTest extends BaseTest{
 
     public DynamicContentTest() {
         super("Dynamic Content");
     }
 
-    @BeforeEach
-    void setUp() {
+    @BeforeTest
+    void setup(){
         super.setUp();
     }
 
-    @AfterEach
-    void tearDown() {
+    @AfterTest
+    void teardown(){
         super.tearDown();
-
     }
 
     @Test
-    void dynamicContentTest() {
+    void verifyDynamicContentPageLoads(){
         DynamicContentPage dcp = new DynamicContentPage(super.driver);
         WebElement pageHeader = dcp.getPageHeader();
-        Assertions.assertEquals("Dynamic Content",pageHeader.getText());
+        Assert.assertEquals("Dynamic Content",pageHeader.getText());
     }
 }
