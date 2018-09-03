@@ -9,3 +9,6 @@ drivers/*
 
 # Target files generated on Build
 target/*
+
+# Test Output reports folder
+test-output/*
