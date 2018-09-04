@@ -1,11 +1,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="TestAll">
-
-    <test name="order">
-        <classes>
-            <class name="tests.DynamicContentTest" />
-        </classes>
+<suite name="selenium-in-a-weekend">
+    <test name="AllTests">
+        <packages>
+            <package name="tests">
+                <include name="tests">
+                </include>
+            </package>
+        </packages>
     </test>
-
 </suite>

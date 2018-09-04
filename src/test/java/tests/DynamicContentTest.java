@@ -1,32 +1,50 @@
 package tests;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.Status;
+import helpers.Reporter;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.DynamicContentPage;
 
-public class DynamicContentTest extends BaseTest{
+import java.io.IOException;
 
-    public DynamicContentTest() {
-        super("Dynamic Content");
+import static org.testng.Assert.assertEquals;
+import static pages.DynamicContentPage.getPageName;
+
+public class DynamicContentTest extends BaseTest {
+
+    @BeforeMethod
+    void setup() {
+        super.setUp(getPageName());
     }
 
-    @BeforeTest
-    void setup(){
-        super.setUp();
-    }
-
-    @AfterTest
-    void teardown(){
+    @AfterMethod
+    void teardown() {
         super.tearDown();
     }
 
     @Test
-    void verifyDynamicContentPageLoads(){
+    void verifyDynamicContentPageLoads() throws IOException {
+
+        // creates a toggle for the given test, adds all log events under it
+        ExtentTest test = Reporter.getInstance().extent.createTest("verifyDynamicContentPageLoads", "Verify Dynamic Content page loads correctly");
+
+        // log(Status, details)
+        test.log(Status.INFO, "This step shows usage of log(status, details)");
+
+        // info(details)
+        test.info("This step shows usage of info(details)");
+
         DynamicContentPage dcp = new DynamicContentPage(super.driver);
         WebElement pageHeader = dcp.getPageHeader();
-        Assert.assertEquals("Dynamic Content",pageHeader.getText());
+
+        // log with snapshot
+        test.pass("details", MediaEntityBuilder.createScreenCaptureFromPath("verifyDynamicContentPageLoads.png").build());
+
+        // test with snapshot
+        test.addScreenCaptureFromPath("verifyDynamicContentPageLoads.png");
+        assertEquals(pageHeader.getText(), getPageName());
     }
 }
