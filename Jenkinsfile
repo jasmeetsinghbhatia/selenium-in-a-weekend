@@ -1,16 +1,27 @@
 pipeline {
-    agent none
+    agent any
+    tools {
+        maven 'Maven 3.5.4'
+        jdk 'jdk10'
+    }
     stages {
-        stage('Maven Build') {
+        stage ('Initialize') {
             steps {
-                echo 'Hello, Maven. Start the build'
-                mvn clean build
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
             }
         }
-        stage('Maven Test') {
+
+        stage ('Build') {
             steps {
-                echo 'Hello, TestNG. Start the tests'
-                mvn test
+                sh 'mvn clean test -DtestngFile=testng.xml'
+            }
+            post {
+                success {
+                    testng 'target/surefire-reports/**/*.xml'
+                }
             }
         }
     }
