@@ -3,6 +3,7 @@ package tests;
 import helpers.Reporter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import pages.BasePage;
 
 public class BaseTest {
@@ -22,7 +23,13 @@ public class BaseTest {
 
         //        Working with Chrome as primary browser
         System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
-        this.driver = new ChromeDriver();
+
+        // Add options to Google Chrome. no-sandbox is important for running chrome headless on docker containers
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("headless");
+        options.addArguments("no-sandbox");
+        options.addArguments("disable-gpu");
+        this.driver = new ChromeDriver(options);
 
         // Open the Home page of the test application
         this.driver.get("http://the-internet.herokuapp.com");
