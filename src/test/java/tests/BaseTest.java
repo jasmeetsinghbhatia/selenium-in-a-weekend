@@ -22,7 +22,7 @@ public class BaseTest {
         //        this.driver = new InternetExplorerDriver();
 
         //        Working with Chrome as primary browser
-        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
 
         // Add options to Google Chrome. no-sandbox is important for running chrome headless on docker containers
         ChromeOptions options = new ChromeOptions();
